@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Francisco Javier
+ * @author Francisco Javier munoz
  */
 @Entity
 @Table(name="stores")
