@@ -8,6 +8,7 @@ import com.kiddo.eshop.model.Store;
 import com.kiddo.eshop.model.Store_Product;
 import com.kiddo.eshop.service.UserService;
 import com.kiddo.eshop.model.User;
+import com.kiddo.eshop.service.ItemService;
 import com.kiddo.eshop.service.ProductService;
 import com.kiddo.eshop.service.StoreService;
 import java.util.List;
@@ -42,6 +43,10 @@ public class RESTController {
         @Autowired(required=true)
         @Qualifier(value="storeService")
         private StoreService storeService;
+        
+        @Autowired(required=true)
+        @Qualifier(value="itemService")
+        private ItemService itemService;
       
     
         public void setUserService(UserService us){
@@ -54,6 +59,10 @@ public class RESTController {
     
         public void setStoreService(StoreService ss){
             this.storeService = ss;
+        }
+        
+        public void setItemService(ItemService is){
+            this.itemService = is;
         }
         
         @JsonView(Views.Public.class)
@@ -75,6 +84,15 @@ public class RESTController {
 	public @ResponseBody List<Item> cart(@PathVariable int id) {
                 
             return this.userService.getCartById(id);
+	}
+        
+        @JsonView(Views.Public.class)
+        @RequestMapping(value="/user/{user_id}/cart/{item_id}/cancel", method = RequestMethod.GET)
+	public @ResponseBody String deleteItem(@PathVariable int item_id) {
+                
+            this.itemService.deleteItem(item_id);
+                
+            return "success";
 	}
         
         @JsonView(Views.Public.class)
