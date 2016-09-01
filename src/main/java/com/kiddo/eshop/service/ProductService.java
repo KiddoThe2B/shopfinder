@@ -42,6 +42,11 @@ public class ProductService {
         return this.getStores(this.getProductById(id).getStore_Products());
     }
     
+    @Transactional
+    public List<Store_Product> getStoreProductsById (int id){
+        return this.getProductById(id).getStore_Products();
+    }
+    
     public Set<Store> getStores(List<Store_Product> store_products){
         Set<Store> stores = new HashSet<Store>();
         for (Store_Product sd : store_products){

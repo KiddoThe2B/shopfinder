@@ -35,6 +35,8 @@ public class User {
     String password;
     @JsonView(Views.Public.class)
     List<Item> cart;
+//    private List<Review> reviews;
+
     
     @Id
     @Column(name="user_id")
@@ -82,4 +84,13 @@ public class User {
     public void setCart(List<Item> cart) {
         this.cart = cart;
     }
+    
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk2.user", cascade=CascadeType.ALL)
+//    public List<Review> getReviews() {
+//        return reviews;
+//    }
+//
+//    public void setReviews(List<Review> reviews) {
+//        this.reviews = reviews;
+//    }
 }

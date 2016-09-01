@@ -35,6 +35,8 @@ public class Product implements Serializable {
     String name;
     @JsonView(Views.Public.class)
     String description;
+    @JsonView(Views.Public.class)
+    String image;
     List<Store_Product> store_products;
     
     List<Item> items;
@@ -70,6 +72,17 @@ public class Product implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Column(name="image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
+    
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.product")
     public List<Item> getItems() {

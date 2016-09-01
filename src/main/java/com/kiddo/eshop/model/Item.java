@@ -23,7 +23,7 @@ import javax.persistence.Transient;
 @Table(name = "items")
 @AssociationOverrides({
     @AssociationOverride(name = "pk.user",
-            joinColumns = @JoinColumn(name = "users_user_id")),
+            joinColumns = @JoinColumn(name = "user_id")),
     @AssociationOverride(name = "pk.product",
             joinColumns = @JoinColumn(name = "product_id")) })
 public class Item {

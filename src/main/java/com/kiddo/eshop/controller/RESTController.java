@@ -87,10 +87,19 @@ public class RESTController {
 	}
         
         @JsonView(Views.Public.class)
-        @RequestMapping(value="/user/{user_id}/cart/{item_id}/cancel", method = RequestMethod.GET)
-	public @ResponseBody String deleteItem(@PathVariable int item_id) {
+        @RequestMapping(value="/user/{user_id}/removefromcart/{product_id}", method = RequestMethod.GET)
+	public @ResponseBody String deleteItem(@PathVariable int user_id,@PathVariable int product_id) {
                 
-            this.itemService.deleteItem(item_id);
+            this.itemService.deleteItem(user_id,product_id);
+                
+            return "success";
+	}
+        
+        @JsonView(Views.Public.class)
+        @RequestMapping(value="/user/{user_id}/addtocart/{product_id}", method = RequestMethod.GET)
+	public @ResponseBody String addItem(@PathVariable int user_id,@PathVariable int product_id) {
+                
+            this.itemService.addItem(user_id,product_id);
                 
             return "success";
 	}
@@ -107,6 +116,13 @@ public class RESTController {
 	public @ResponseBody Set<Store> shops(@PathVariable int id) {
                 
             return this.productService.getShopsById(id);
+	}
+        
+        @JsonView(Views.Public.class)
+        @RequestMapping(value="/product/{id}/storeproducts", method = RequestMethod.GET)
+	public @ResponseBody List<Store_Product> storeproducts(@PathVariable int id) {
+                
+            return this.productService.getStoreProductsById(id);
 	}
 	
 }

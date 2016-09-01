@@ -33,6 +33,8 @@ public class Store implements Serializable{
     String name;
     @JsonView(Views.Public.class)
     String address;
+    @JsonView(Views.Public.class)
+    String image;
     List<Store_Product> store_products;
     
     @Id
@@ -58,7 +60,7 @@ public class Store implements Serializable{
         this.name = name;
     }
 
-    @Column(name="adress")      //db spelling error 
+    @Column(name="address")
     public String getAddress() {
         return address;
     }
@@ -66,8 +68,17 @@ public class Store implements Serializable{
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Column(name="image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.store")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.store", cascade=CascadeType.ALL)
     public List<Store_Product> getStore_Products() {
         return store_products;
     }
