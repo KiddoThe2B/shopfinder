@@ -52,15 +52,10 @@ public class UserService {
     }
     
     @Transactional
-    public String login (String email, String password){
+    public User login (String email, String password){
         
-        String pswrd = this.userDAO.login(email);
-        if(password.equals(pswrd)){
-            return "User login successfully!";
-        }
-        else{
-            return "Wrong Username or Password";
-        }
+        User user = this.userDAO.login(email,password);
+        return user;
     }
    
 }

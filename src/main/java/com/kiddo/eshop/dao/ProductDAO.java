@@ -9,6 +9,7 @@ import com.kiddo.eshop.model.Product;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -25,5 +26,11 @@ public class ProductDAO extends DAO{
         .add(Restrictions.eq("id", id));
         List l = cr.list();
         return (Product) l.get(0);
+    }
+
+    public List<Product> getProducts() {
+        Session session = this.getSession();     
+        Criteria cr = session.createCriteria(Product.class).addOrder(Order.asc("id"));
+        return cr.list();
     }
 }

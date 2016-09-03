@@ -11,12 +11,17 @@ import com.kiddo.eshop.model.User;
 import com.kiddo.eshop.service.ItemService;
 import com.kiddo.eshop.service.ProductService;
 import com.kiddo.eshop.service.StoreService;
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,6 +71,18 @@ public class RESTController {
         }
         
         @JsonView(Views.Public.class)
+        @RequestMapping(value="/signin", method=RequestMethod.POST)
+        public @ResponseBody User processLogin(HttpServletRequest request){
+            String email=request.getParameter("email");
+            String password=request.getParameter("password");
+            User user = this.userService.login(email,password);
+            if(user==null){
+                user = new User();
+            }
+            return user;
+        }
+        
+        @JsonView(Views.Public.class)
         @RequestMapping(value="/user/{id}/account", method = RequestMethod.GET)
 	public @ResponseBody User account(@PathVariable int id) {
                 
@@ -77,6 +94,12 @@ public class RESTController {
 	public @ResponseBody Product product(@PathVariable int id) {
                 
                 return this.productService.getProductById(id);
+	}
+        
+        @JsonView(Views.Public.class)
+        @RequestMapping(value="/catalog", method = RequestMethod.GET)
+	public @ResponseBody List<Product> product() {
+                return this.productService.getProducts();
 	}
         
         @JsonView(Views.Public.class)

@@ -54,4 +54,9 @@ public class ProductService {
         }
         return stores;
     }
+
+    @Transactional
+    public List<Product> getProducts() {
+        return productDAO.getProducts();
+    }
 }

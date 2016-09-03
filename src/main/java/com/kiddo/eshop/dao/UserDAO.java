@@ -26,14 +26,14 @@ public class UserDAO extends DAO{
         session.save(user);
     }
 
-    public String login(String email) {
+    public User login(String email,String password) {
         Session session = this.getSession();     
         Criteria cr = session.createCriteria(User.class)
         .add(Restrictions.eq("email", email))
-        .setProjection(Projections.property("password"));
+        .add(Restrictions.eq("password", password));
         List l = cr.list();
-        if(l!=null){
-            return (String) l.get(0);
+        if(l!=null && !l.isEmpty()){
+            return (User) l.get(0);
         }
         else{
             return null;
