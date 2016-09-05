@@ -4,7 +4,6 @@ import com.kiddo.eshop.config.SpringWebConfig;
 import com.kiddo.eshop.config.HibernateConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javafx.application.Application;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

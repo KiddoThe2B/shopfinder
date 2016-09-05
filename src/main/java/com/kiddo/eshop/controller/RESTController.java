@@ -12,6 +12,7 @@ import com.kiddo.eshop.service.ItemService;
 import com.kiddo.eshop.service.ProductService;
 import com.kiddo.eshop.service.StoreService;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
@@ -104,28 +105,34 @@ public class RESTController {
         
         @JsonView(Views.Public.class)
         @RequestMapping(value="/user/{id}/cart", method = RequestMethod.GET)
-	public @ResponseBody List<Item> cart(@PathVariable int id) {
-                
-            return this.userService.getCartById(id);
+	public @ResponseBody List<Product> cart(@PathVariable int id) {
+           List<Product> products = new ArrayList(); 
+           List<Item> items = this.userService.getCartById(id);
+           for(Item item:items){
+               products.add(item.getProduct());
+           }
+           return products;
 	}
         
         @JsonView(Views.Public.class)
-        @RequestMapping(value="/user/{user_id}/removefromcart/{product_id}", method = RequestMethod.GET)
-	public @ResponseBody String deleteItem(@PathVariable int user_id,@PathVariable int product_id) {
-                
+        @RequestMapping(value="/removefromcart", method=RequestMethod.POST)
+        public @ResponseBody String removeFromCart(HttpServletRequest request){
+            int user_id=Integer.parseInt(request.getParameter("user_id"));
+            int product_id=Integer.parseInt(request.getParameter("product_id"));
             this.itemService.deleteItem(user_id,product_id);
                 
             return "success";
-	}
+        }
         
         @JsonView(Views.Public.class)
-        @RequestMapping(value="/user/{user_id}/addtocart/{product_id}", method = RequestMethod.GET)
-	public @ResponseBody String addItem(@PathVariable int user_id,@PathVariable int product_id) {
-                
+        @RequestMapping(value="/addtocart", method=RequestMethod.POST)
+        public @ResponseBody String addToCart(HttpServletRequest request){
+            int user_id=Integer.parseInt(request.getParameter("user_id"));
+            int product_id=Integer.parseInt(request.getParameter("product_id"));
             this.itemService.addItem(user_id,product_id);
                 
             return "success";
-	}
+        }
         
         @JsonView(Views.Public.class)
         @RequestMapping(value="/store/{id}", method = RequestMethod.GET)
