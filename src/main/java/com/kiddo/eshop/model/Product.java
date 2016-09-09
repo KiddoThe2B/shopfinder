@@ -37,6 +37,7 @@ public class Product implements Serializable {
     String description;
     @JsonView(Views.Public.class)
     String image;
+    @JsonView(Views.Public.class)
     List<Store_Product> store_products;
     
     List<Item> items;

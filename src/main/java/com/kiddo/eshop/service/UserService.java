@@ -27,9 +27,12 @@ public class UserService {
     }
     
     @Transactional
-    public String saveUser (User user){
-        
-        this.userDAO.save(user);
+    public String saveUser (String email, String password,String fullname){
+        User u = new User();
+        u.setEmail(email);
+        u.setPassword(password);
+        u.setFullname(fullname);
+        this.userDAO.save(u);
         return "User created successfully!";
     }
     

@@ -72,6 +72,12 @@ public class RESTController {
         }
         
         @JsonView(Views.Public.class)
+        @RequestMapping(value = "/", method = RequestMethod.GET)
+        public @ResponseBody String main(){
+            return "REST Services Provider is up!";
+        }
+
+        @JsonView(Views.Public.class)
         @RequestMapping(value="/signin", method=RequestMethod.POST)
         public @ResponseBody User processLogin(HttpServletRequest request){
             String email=request.getParameter("email");
@@ -81,6 +87,28 @@ public class RESTController {
                 user = new User();
             }
             return user;
+        }
+        
+        @JsonView(Views.Public.class)
+        @RequestMapping(value="/signup", method=RequestMethod.POST)
+        public @ResponseBody String signUp(HttpServletRequest request){
+            String email=request.getParameter("email");
+            String password=request.getParameter("password");
+            String fullname=request.getParameter("fullname");
+            String text = this.userService.saveUser(email, password, fullname);
+            return text;
+        }
+        
+        @JsonView(Views.Public.class)
+        @RequestMapping(value="/submitreview", method=RequestMethod.POST)
+        public @ResponseBody String submitReview(HttpServletRequest request){
+            String user_id=request.getParameter("user_id");
+            String product_id=request.getParameter("product_id");
+            String store_id=request.getParameter("store_id");
+            String comments=request.getParameter("comments");
+            String rating=request.getParameter("rating");
+            // this.ReviewService.create(user_id,product_id,store_id,comments,rating);
+            return "success";
         }
         
         @JsonView(Views.Public.class)

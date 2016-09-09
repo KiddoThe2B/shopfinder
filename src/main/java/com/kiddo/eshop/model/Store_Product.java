@@ -38,7 +38,6 @@ public class Store_Product {
     @JsonView(Views.Public.class)
     private Store_ProductId pk = new Store_ProductId();
 //    private List<Review> reviews;
-    @JsonView(Views.Public.class)
     private int storeproduct_id;
     @JsonView(Views.Public.class)
     private double price;
