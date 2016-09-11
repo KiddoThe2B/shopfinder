@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
  */
 
 @Embeddable
-class Store_ProductId implements java.io.Serializable {
+class StoreProductId implements java.io.Serializable {
     
     @JsonView(Views.Public.class)
     private Store store;
@@ -44,7 +44,7 @@ class Store_ProductId implements java.io.Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Store_ProductId that = (Store_ProductId) o;
+        StoreProductId that = (StoreProductId) o;
 
         if (store != null ? !store.equals(that.store) : that.store != null) return false;
         if (product != null ? !product.equals(that.product) : that.product != null)
@@ -57,8 +57,8 @@ class Store_ProductId implements java.io.Serializable {
 
     public int hashCode() {
         int result;
-        result = (product != null ? product.hashCode() : 0);
-        result = 31 * result + (store != null ? store.hashCode() : 0);
+        result = (store != null ? store.hashCode() : 0);
+        result = 31 * result + (product != null ? product.hashCode() : 0);
         return result;
     }
 }

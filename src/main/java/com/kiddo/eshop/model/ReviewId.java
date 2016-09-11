@@ -17,7 +17,7 @@ class ReviewId {
     @JsonView(Views.Public.class)
     private User user;
     @JsonView(Views.Public.class)
-    private Store_Product product;
+    private StoreProduct storeproduct;
 
     @ManyToOne
     public User getUser() {
@@ -29,12 +29,12 @@ class ReviewId {
     }
 
     @ManyToOne
-    public Store_Product getStore_Product() {
-        return product;
+    public StoreProduct getStoreProduct() {
+        return storeproduct;
     }
 
-    public void setStore_Product(Store_Product product) {
-        this.product = product;
+    public void setStoreProduct(StoreProduct storeproduct) {
+        this.storeproduct = storeproduct;
     }
 
     public boolean equals(Object o) {
@@ -44,7 +44,7 @@ class ReviewId {
         ReviewId that = (ReviewId) o;
 
         if (user != null ? !user.equals(that.user) : that.user != null) return false;
-        if (product != null ? !product.equals(that.product) : that.product != null)
+        if (storeproduct != null ? !storeproduct.equals(that.storeproduct) : that.storeproduct != null)
             return false;
 
         return true;
@@ -55,7 +55,7 @@ class ReviewId {
     public int hashCode() {
         int result;
         result = (user != null ? user.hashCode() : 0);
-        result = 31 * result + (product != null ? product.hashCode() : 0);
+        result = 31 * result + (storeproduct != null ? storeproduct.hashCode() : 0);
         return result;
     }
 }

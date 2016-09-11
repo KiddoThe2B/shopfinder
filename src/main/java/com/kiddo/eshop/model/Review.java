@@ -32,22 +32,22 @@ import javax.persistence.Transient;
 //@AssociationOverrides({
 //    @AssociationOverride(name = "pk2.user",
 //            joinColumns = @JoinColumn(name = "user_id")),
-//    @AssociationOverride(name = "pk2.product",
+//    @AssociationOverride(name = "pk2.storeproduct",
 //            joinColumns = @JoinColumn(name = "storeproduct_id")) })
 public class Review implements Serializable {
-//    
-//    @JsonView(Views.Public.class)
-//    private ReviewId pk2 = new ReviewId();
-//    @JsonView(Views.Public.class)
-//    private String comments;
-//    @JsonView(Views.Public.class)
-//    private int rating;
-//    @JsonView(Views.Public.class)
-//    private double price;
-//    
-//    public Review(){
-//    }
-//    
+    
+    @JsonView(Views.Public.class)
+    private ReviewId pk2 = new ReviewId();
+    @JsonView(Views.Public.class)
+    private String comments;
+    @JsonView(Views.Public.class)
+    private int rating;
+    @JsonView(Views.Public.class)
+    private double price;
+    
+    public Review(){
+    }
+    
 //    @EmbeddedId
 //    public ReviewId getPk() {
 //            return pk2;
@@ -67,12 +67,12 @@ public class Review implements Serializable {
 //    }
 //
 //    @Transient
-//    public Store_Product getStore_Product() {
-//            return getPk().getStore_Product();
+//    public StoreProduct getStoreProduct() {
+//            return getPk().getStoreProduct();
 //    }
 //
-//    public void setStore_Product(Store_Product store_product) {
-//            getPk().setStore_Product(store_product);
+//    public void setStoreProduct(StoreProduct storeproduct) {
+//            getPk().setStoreProduct(storeproduct);
 //    }
 //
 //    @Column(name="comments")
@@ -101,8 +101,8 @@ public class Review implements Serializable {
 //    public void setPrice(double price) {
 //        this.price = price;
 //    }
-//    
-//    
-//    
+    
+    
+    
 }
 

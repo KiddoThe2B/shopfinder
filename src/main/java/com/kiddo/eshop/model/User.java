@@ -35,7 +35,7 @@ public class User {
     String password;
     @JsonView(Views.Public.class)
     List<Item> cart;
-//    private List<Review> reviews;
+    private List<Review> reviews;
 
     
     @Id

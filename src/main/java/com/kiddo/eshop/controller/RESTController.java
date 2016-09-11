@@ -5,12 +5,13 @@ import com.kiddo.eshop.jsonview.Views;
 import com.kiddo.eshop.model.Item;
 import com.kiddo.eshop.model.Product;
 import com.kiddo.eshop.model.Store;
-import com.kiddo.eshop.model.Store_Product;
+import com.kiddo.eshop.model.StoreProduct;
 import com.kiddo.eshop.service.UserService;
 import com.kiddo.eshop.model.User;
 import com.kiddo.eshop.service.ItemService;
 import com.kiddo.eshop.service.ProductService;
 import com.kiddo.eshop.service.StoreService;
+import com.kiddo.eshop.service.ReviewService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,10 @@ public class RESTController {
         @Autowired(required=true)
         @Qualifier(value="itemService")
         private ItemService itemService;
+        
+        @Autowired(required=true)
+        @Qualifier(value="reviewService")
+        private ReviewService reviewService;
       
     
         public void setUserService(UserService us){
@@ -108,7 +113,7 @@ public class RESTController {
             String comments=request.getParameter("comments");
             String rating=request.getParameter("rating");
             String price=request.getParameter("price");
-            // this.ReviewService.addReview(user_id,product_id,store_id,comments,rating,price);
+            this.reviewService.addReview(user_id,product_id,store_id,comments,rating,price);
             return "success";
         }
         
@@ -179,7 +184,7 @@ public class RESTController {
         
         @JsonView(Views.Public.class)
         @RequestMapping(value="/product/{id}/storeproducts", method = RequestMethod.GET)
-	public @ResponseBody List<Store_Product> storeproducts(@PathVariable int id) {
+	public @ResponseBody List<StoreProduct> storeproducts(@PathVariable int id) {
                 
             return this.productService.getStoreProductsById(id);
 	}

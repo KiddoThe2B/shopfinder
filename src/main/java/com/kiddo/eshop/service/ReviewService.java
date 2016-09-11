@@ -5,6 +5,7 @@
  */
 package com.kiddo.eshop.service;
 
+import com.kiddo.eshop.dao.ReviewDAO;
 import com.kiddo.eshop.dao.ProductDAO;
 import com.kiddo.eshop.dao.StoreDAO;
 import com.kiddo.eshop.dao.UserDAO;
@@ -19,21 +20,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("reviewService")
 public class ReviewService {
     
-//    @Autowired 
-//    private UserDAO userDAO;
-//    
-//    @Autowired 
-//    private ProductDAO productDAO;
-//    
-//    @Autowired 
-//    private StoreDAO storeDAO;
-//    
-//    @Autowired 
-//    private ReviewDAO reviewDAO;
-//    
-//    @Transactional
-//    public void addItem(String user_id, String product_id,String store_id,String comments,String rating, String price) {
-//        this.reviewDAO.addReview(this.userDAO.getUserByID(Integer.valueOf(user_id)), this.productDAO.getProductById(Integer.valueOf(product_id)), this.storeDAO.getStoreById(Integer.valueOf(store_id)), comments, rating, price);    
-//    }
+    @Autowired 
+    private UserDAO userDAO;
+    
+    @Autowired 
+    private ProductDAO productDAO;
+    
+    @Autowired 
+    private StoreDAO storeDAO;
+    
+    @Autowired 
+    private ReviewDAO reviewDAO;
+    
+    @Transactional
+    public void addReview(String user_id, String product_id,String store_id,String comments,String rating, String price) {
+        this.reviewDAO.addReview(this.userDAO.getUserByID(Integer.valueOf(user_id)), this.productDAO.getProductById(Integer.valueOf(product_id)), this.storeDAO.getStoreById(Integer.valueOf(store_id)), comments, rating, price);    
+    }
     
 }

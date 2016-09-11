@@ -8,7 +8,7 @@ package com.kiddo.eshop.service;
 import com.kiddo.eshop.dao.ProductDAO;
 import com.kiddo.eshop.model.Product;
 import com.kiddo.eshop.model.Store;
-import com.kiddo.eshop.model.Store_Product;
+import com.kiddo.eshop.model.StoreProduct;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,17 +39,17 @@ public class ProductService {
     @Transactional
     public Set<Store> getShopsById (int id){
         
-        return this.getStores(this.getProductById(id).getStore_Products());
+        return this.getStores(this.getProductById(id).getStoreProducts());
     }
     
     @Transactional
-    public List<Store_Product> getStoreProductsById (int id){
-        return this.getProductById(id).getStore_Products();
+    public List<StoreProduct> getStoreProductsById (int id){
+        return this.getProductById(id).getStoreProducts();
     }
     
-    public Set<Store> getStores(List<Store_Product> store_products){
+    public Set<Store> getStores(List<StoreProduct> storeproducts){
         Set<Store> stores = new HashSet<Store>();
-        for (Store_Product sd : store_products){
+        for (StoreProduct sd : storeproducts){
             stores.add(sd.getStore());
         }
         return stores;

@@ -38,7 +38,7 @@ public class Product implements Serializable {
     @JsonView(Views.Public.class)
     String image;
     @JsonView(Views.Public.class)
-    List<Store_Product> store_products;
+    List<StoreProduct> storeproducts;
     
     List<Item> items;
     
@@ -95,12 +95,12 @@ public class Product implements Serializable {
     }
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.product", cascade=CascadeType.ALL)
-    public List<Store_Product> getStore_Products() {
-        return store_products;
+    public List<StoreProduct> getStoreProducts() {
+        return storeproducts;
     }
 
-    public void setStore_Products(List<Store_Product> store_products) {
-        this.store_products = store_products;
+    public void setStoreProducts(List<StoreProduct> storeproducts) {
+        this.storeproducts = storeproducts;
     }
     
 

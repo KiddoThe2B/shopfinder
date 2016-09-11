@@ -33,27 +33,27 @@ import javax.persistence.Transient;
             joinColumns = @JoinColumn(name = "shop_id")),
     @AssociationOverride(name = "pk.product",
             joinColumns = @JoinColumn(name = "product_id")) })
-public class Store_Product {
+public class StoreProduct {
     
     @JsonView(Views.Public.class)
-    private Store_ProductId pk = new Store_ProductId();
-//    private List<Review> reviews;
-    private int storeproduct_id;
+    private StoreProductId pk = new StoreProductId();
+    private List<Review> reviews;
+    private int storeproductId;
     @JsonView(Views.Public.class)
     private double price;
     
-    public Store_Product(){
+    public StoreProduct(){
     }
     
     @Id
     @Column(name="storeproduct_id")
     @GeneratedValue
-    public int getStoreproduct_id() {
-        return storeproduct_id;
+    public int getStoreproductId() {
+        return storeproductId;
     }
 
-    public void setStoreproduct_id(int storeproduct_id) {
-        this.storeproduct_id = storeproduct_id;
+    public void setStoreproductId(int storeproductId) {
+        this.storeproductId = storeproductId;
     }
     
     @Column(name="price")
@@ -66,11 +66,11 @@ public class Store_Product {
     }
     
 //    @EmbeddedId
-    public Store_ProductId getPk() {
+    public StoreProductId getPk() {
             return pk;
     }
 
-    public void setPk(Store_ProductId pk) {
+    public void setPk(StoreProductId pk) {
             this.pk = pk;
     }
     
@@ -92,7 +92,7 @@ public class Store_Product {
             getPk().setProduct(product);
     }
     
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk2.product", cascade=CascadeType.ALL)
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk2.storeproduct", cascade=CascadeType.ALL)
 //    public List<Review> getReviews() {
 //        return reviews;
 //    }
