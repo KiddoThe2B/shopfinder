@@ -107,7 +107,8 @@ public class RESTController {
             String store_id=request.getParameter("store_id");
             String comments=request.getParameter("comments");
             String rating=request.getParameter("rating");
-            // this.ReviewService.create(user_id,product_id,store_id,comments,rating);
+            String price=request.getParameter("price");
+            // this.ReviewService.addReview(user_id,product_id,store_id,comments,rating,price);
             return "success";
         }
         
